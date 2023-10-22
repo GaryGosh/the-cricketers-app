@@ -32,6 +32,7 @@ const getPlayers = (args) => {
     // Calculate pagination values
     const pageSize = 10;
     const page = args?.page || 1;
+    const totalPages = Math.ceil(sortedData.length / pageSize);
     const startIndex = (page - 1) * pageSize;
     const endIndex = startIndex + pageSize;
 
@@ -42,6 +43,7 @@ const getPlayers = (args) => {
       total: sortedData.length,
       page,
       pageSize,
+      totalPages: totalPages,
       data: pagedData,
     });
   });

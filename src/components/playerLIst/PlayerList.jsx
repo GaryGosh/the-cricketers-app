@@ -9,7 +9,7 @@ function PlayerList({ player = {} }) {
       <Row gutter={[16, 16]} className="align-center">
         <Col span={6}>
           <div className="player-name">{player?.name}</div>
-          <div className="type-chip">{player?.type}</div>
+          {player?.type && <div className="type-chip">{player?.type}</div>}
         </Col>
         <Col span={6}>
           <div className="list-text">{`# ${player?.rank}`}</div>

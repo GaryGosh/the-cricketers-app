@@ -8,18 +8,33 @@ import NavButton from "./components/navButton/navButton";
 
 function App() {
   const [players, setPlayers] = useState([]);
-  let body = { type: "batsman", sortBy: "rank", page: 1 };
+  const [currentPage, setCurretPage] = useState(1);
+  // let body = { type: "batsman", sortBy: "rank", page: 1 };
+  let body = { page: currentPage };
 
   useEffect(() => {
     getPlayers(body)
       .then((result) => {
         console.log(result);
         setPlayers(result);
+        setCurretPage(at(result, "page") || 1);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [currentPage]);
+
+  const fetchNext = () => {
+    if (at(players, "page") < at(players, "totalPages")) {
+      setCurretPage(currentPage + 1);
+    }
+  };
+
+  const fetchPrev = () => {
+    if (at(players, "page") > 1) {
+      setCurretPage(currentPage - 1);
+    }
+  };
 
   return (
     <>
@@ -42,7 +57,13 @@ function App() {
         <PlayerList player={player} key={player.id} />
       ))}
 
-      <NavButton />
+      {/* prev - next button */}
+      <NavButton
+        totalPages={at(players, "totalPages")}
+        currentPage={at(players, "page")}
+        onclickBack={fetchPrev}
+        onClickNext={fetchNext}
+      />
     </>
   );
 }
