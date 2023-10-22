@@ -5,6 +5,12 @@
   min-height: 60px;
   border-radius: 12px;
   margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.list-wrapper:hover {
+  transition: all 0.2s ease-in-out;
+  transform: scale(1.01);
 }
 
 .align-center {

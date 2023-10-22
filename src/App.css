@@ -21,4 +21,24 @@
   font-size: 18px;
   font-weight: 600;
   line-height: 28px;
+  color: #e767e5;
+}
+
+.title:before {
+  content: "";
+  position: absolute;
+  left: 30%;
+  bottom: 0;
+  height: 1px;
+  width: 40%;
+  border-bottom: 1px solid #8c5bea;
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  color: #44259a;
+  font-size: 18px;
 }

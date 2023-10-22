@@ -5,6 +5,7 @@ import at from "v-at";
 import PlayerList from "./components/playerLIst/PlayerList";
 import { Col, Row } from "antd";
 import NavButton from "./components/navButton/navButton";
+import Header from "./components/header/Header";
 
 function App() {
   const [players, setPlayers] = useState([]);
@@ -38,6 +39,7 @@ function App() {
 
   return (
     <>
+      <Header />
       <Row gutter={[16, 16]} className="title-wrapper">
         <Col span={6}>
           <div className="title">Player</div>
