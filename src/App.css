@@ -39,6 +39,19 @@
   justify-content: center;
   align-items: center;
   gap: 12px;
-  color: #44259a;
   font-size: 18px;
+  color: #7f87ff;
+}
+
+.main-header {
+  background: linear-gradient(
+    to right,
+    #2ca2b4,
+    #5598de 24%,
+    #7f87ff 45%,
+    #f65aad 76%,
+    #ec3d43
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

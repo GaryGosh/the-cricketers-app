@@ -1,6 +1,7 @@
 import data from "../players";
 
 const getPlayers = (args) => {
+  console.log("args to fetch ", args);
   return new Promise((resolve) => {
     let sortedData = data;
 

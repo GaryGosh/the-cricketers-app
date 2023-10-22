@@ -6,15 +6,16 @@ import PlayerList from "./components/playerLIst/PlayerList";
 import { Col, Row } from "antd";
 import NavButton from "./components/navButton/navButton";
 import Header from "./components/header/Header";
+import Filters from "./components/filters/Filters";
 
 function App() {
   const [players, setPlayers] = useState([]);
   const [currentPage, setCurretPage] = useState(1);
+  const [filters, setFilters] = useState({ page: currentPage });
   // let body = { type: "batsman", sortBy: "rank", page: 1 };
-  let body = { page: currentPage };
 
   useEffect(() => {
-    getPlayers(body)
+    getPlayers(filters)
       .then((result) => {
         console.log(result);
         setPlayers(result);
@@ -23,23 +24,60 @@ function App() {
       .catch((error) => {
         console.log(error);
       });
-  }, [currentPage]);
+  }, [filters]);
 
   const fetchNext = () => {
     if (at(players, "page") < at(players, "totalPages")) {
-      setCurretPage(currentPage + 1);
+      // setCurretPage(currentPage + 1);
+      setFilters({ ...filters, page: currentPage + 1 });
     }
   };
 
   const fetchPrev = () => {
     if (at(players, "page") > 1) {
-      setCurretPage(currentPage - 1);
+      // setCurretPage(currentPage - 1);
+      setFilters({ ...filters, page: currentPage - 1 });
     }
+  };
+
+  const onChangeToggle = (checked) => {
+    console.log(`switch to ${checked}`);
+    if (checked) {
+      setFilters({ ...filters, asc: false });
+    } else {
+      setFilters({ ...filters, asc: true });
+    }
+    // todo: map to query
+  };
+
+  const handleSortByChange = (value) => {
+    console.log(`selected sort ${value}`);
+    setFilters({ ...filters, sortBy: value });
+    // todo: map to query
+  };
+
+  const handleFilterByChange = (value) => {
+    console.log(`selected filter ${value}`);
+    setFilters({ ...filters, type: value });
+    // todo: map to query
+  };
+
+  const clearAllFilters = () => {
+    setFilters({ page: 1 });
+    // todo: remove added queries
   };
 
   return (
     <>
       <Header />
+
+      <Filters
+        handleSortByChange={handleSortByChange}
+        onChangeToggle={onChangeToggle}
+        handleFilterByChange={handleFilterByChange}
+        clearFilters={clearAllFilters}
+      />
+
       <Row gutter={[16, 16]} className="title-wrapper">
         <Col span={6}>
           <div className="title">Player</div>

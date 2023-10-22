@@ -4,7 +4,7 @@ import React from "react";
 function Header() {
   return (
     <div className="header-wrapper">
-      <h2>The Cricketer&apos;s App</h2>
+      <h1 className="main-header">THE CRICKETER&apos;S APP</h1>
       <PlayCircleOutlined spin />
     </div>
   );

@@ -1,0 +1,26 @@
+.filter-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 36px;
+  margin-bottom: 16px;
+}
+
+.toggle-text {
+  margin-top: -4px;
+  margin-bottom: 4px;
+}
+
+.ant-switch-checked {
+  background: #8a9cff !important;
+}
+
+.ant-select-selector {
+  border-color: #8a9cff !important;
+}
+
+.clear-btn {
+  color: "red";
+  font-size: "22px";
+  cursor: "pointer";
+}
