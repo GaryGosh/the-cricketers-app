@@ -1,6 +1,6 @@
 import data from "../players";
 
-const getPlayers = (args) => {
+export const getPlayers = (args) => {
   console.log("args to fetch ", args);
   return new Promise((resolve) => {
     let sortedData = data;
@@ -63,4 +63,9 @@ const getPlayers = (args) => {
   });
 };
 
-export default getPlayers;
+export const getPlayerById = (playerId) => {
+  return new Promise((resolve) => {
+    const player = data.find((player) => player.id === playerId);
+    resolve(player);
+  });
+};

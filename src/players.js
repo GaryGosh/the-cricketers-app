@@ -7,6 +7,7 @@ const players = [
     type: "batsman",
     points: 282,
     dob: 594691200000,
+    picUrl: "https://a1png.com/wp-content/uploads/2021/01/virat-kohli-11.png",
   },
   {
     id: "_2",
@@ -16,6 +17,7 @@ const players = [
     type: "bowler",
     points: 234,
     dob: 546739200000,
+    picUrl: "https://resources.pulse.icc-cricket.com/players/33992/284/107.png",
   },
   {
     id: "_3",
@@ -25,6 +27,8 @@ const players = [
     type: "allRounder",
     points: 532,
     dob: 104457600000,
+    picUrl:
+      "https://a1png.com/wp-content/uploads/2021/01/sachin-tendulkar-9.png",
   },
   {
     id: "_4",
@@ -34,6 +38,7 @@ const players = [
     type: "batsman",
     points: 344,
     dob: 363312000000,
+    picUrl: "https://a1png.com/wp-content/uploads/2021/01/ms-dhoni-1-2.png",
   },
   {
     id: "_5",
@@ -43,6 +48,8 @@ const players = [
     type: "allRounder",
     points: 542,
     dob: 597369600000,
+    picUrl:
+      "https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/IPLHeadshot2023/46.png",
   },
   {
     id: "_6",
@@ -51,6 +58,7 @@ const players = [
       "Rahul Sharad Dravid is an Indian cricket coach and former captain of the Indian national team, currently serving as its head coach. Prior to his appointment to the senior men's national team, Dravid was the Head of Cricket at the National Cricket Academy, and the head coach of the India Under-19 and India A teams.",
     points: 211,
     dob: 95558400000,
+    // picUrl: "https://a1png.com/wp-content/uploads/2021/01/rahul-dravid-6-1.png",
   },
   {
     id: "_7",
@@ -60,6 +68,8 @@ const players = [
     type: "allRounder",
     points: 223,
     dob: 527299200000,
+    picUrl:
+      "https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/IPLHeadshot2023/45.png",
   },
   {
     id: "_8",
@@ -69,6 +79,8 @@ const players = [
     type: "bowler",
     points: 230,
     dob: 648691200000,
+    picUrl:
+      "https://www.rajasthanroyals.com/static-assets/images/players/9844.png?v=5.55",
   },
   {
     id: "_9",
@@ -78,6 +90,8 @@ const players = [
     type: "allRounder",
     points: 301,
     dob: 750297600000,
+    picUrl:
+      "https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/IPLHeadshot2023/54.png",
   },
   {
     id: "_10",
@@ -87,6 +101,8 @@ const players = [
     type: "wicketKeeper",
     points: 209,
     dob: 875923200000,
+    picUrl:
+      "https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/IPLHeadshot2023/51.png",
   },
   {
     id: "_11",
@@ -96,6 +112,8 @@ const players = [
     type: "bowler",
     points: 301,
     dob: 918172800000,
+    picUrl:
+      "https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/IPLHeadshot2023/125.png",
   },
   {
     id: "_12",
@@ -105,6 +123,8 @@ const players = [
     type: "batsman",
     points: 276,
     dob: 653270400000,
+    picUrl:
+      "https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/IPLHeadshot2023/174.png",
   },
   {
     id: "_13",
@@ -114,6 +134,8 @@ const players = [
     type: "allRounder",
     points: 301,
     dob: 759024000000,
+    picUrl:
+      "https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/IPLHeadshot2023/110.png",
   },
 ];
 

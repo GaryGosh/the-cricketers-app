@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import getPlayers from "./utils/getPlayers";
+import { getPlayers } from "./utils/getPlayers";
 import at from "v-at";
 import PlayerList from "./components/playerLIst/PlayerList";
 import { Col, Row } from "antd";
