@@ -43,9 +43,9 @@ function App() {
   const onChangeToggle = (checked) => {
     console.log(`switch to ${checked}`);
     if (checked) {
-      setFilters({ ...filters, asc: false });
+      setFilters({ ...filters, isDescending: true });
     } else {
-      setFilters({ ...filters, asc: true });
+      setFilters({ ...filters, isDescending: false });
     }
     // todo: map to query
   };
@@ -76,6 +76,7 @@ function App() {
         onChangeToggle={onChangeToggle}
         handleFilterByChange={handleFilterByChange}
         clearFilters={clearAllFilters}
+        filterValues={filters}
       />
 
       <Row gutter={[16, 16]} className="title-wrapper">
