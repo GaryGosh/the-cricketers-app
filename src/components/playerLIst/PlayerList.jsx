@@ -28,16 +28,16 @@ function PlayerList({ player = {} }) {
       onClick={() => goToDetailedView(player)}
     >
       <Row gutter={[16, 16]} className="align-center">
-        <Col span={6}>
+        <Col span={6} xs={8}>
           <div className="player-name">{player?.name}</div>
           {player?.type && (
             <div className="type-chip">{playerType[player?.type]}</div>
           )}
         </Col>
-        <Col span={6}>
+        <Col span={6} xs={5}>
           <div className="list-text">{`# ${player?.rank}`}</div>
         </Col>
-        <Col span={6}>
+        <Col span={6} xs={5}>
           <div className="list-text">{player?.points}</div>
         </Col>
         <Col span={6}>

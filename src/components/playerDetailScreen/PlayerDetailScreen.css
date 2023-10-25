@@ -70,3 +70,34 @@ h2 {
   align-items: center;
   height: 100vh;
 }
+
+@media (max-width: 960px) {
+  .player-detail {
+    max-height: unset;
+  }
+
+  .name {
+    font-size: 28px;
+  }
+
+  .player-image {
+    right: -70px;
+  }
+
+  .player-description {
+    max-width: 40vw;
+    font-size: 14px;
+  }
+
+  .player-chips-wrapper {
+    gap: 12px;
+  }
+
+  .info-container > p {
+    font-size: 14px;
+  }
+
+  .player-chip {
+    font-size: 14px;
+  }
+}

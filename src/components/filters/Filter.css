@@ -27,3 +27,11 @@
   border-color: #8a9cff !important;
   color: #8a9cff !important;
 }
+
+@media (max-width: 480px) {
+  .filter-container {
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: space-evenly;
+  }
+}
