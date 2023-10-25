@@ -7,64 +7,108 @@ import { Col, Row } from "antd";
 import NavButton from "./components/navButton/navButton";
 import Header from "./components/header/Header";
 import Filters from "./components/filters/Filters";
+import { getUrl } from "./utils/utils";
+import { useLocation, useNavigate } from "react-router-dom";
+
+const useQuery = () => {
+  return new URLSearchParams(useLocation().search);
+};
 
 function App() {
+  const queries = useQuery();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [players, setPlayers] = useState([]);
   const [currentPage, setCurretPage] = useState(1);
-  const [filters, setFilters] = useState({ page: currentPage });
-  // let body = { type: "batsman", sortBy: "rank", page: 1 };
+  const [filters, setFilters] = useState({
+    page: currentPage,
+    isDescending: queries.get("isDescending") || false,
+    sortBy: queries.get("sortBy") || null,
+    type: queries.get("type") || null,
+  });
 
   useEffect(() => {
     getPlayers(filters)
       .then((result) => {
-        console.log(result);
         setPlayers(result);
         setCurretPage(at(result, "page") || 1);
       })
       .catch((error) => {
         console.log(error);
       });
+
+    updateQueries();
   }, [filters]);
+
+  // mapping filter changes to queries
+  const updateQueries = () => {
+    let searchParams = "";
+
+    if (at(filters, "isDescending")) {
+      searchParams = getUrl({
+        queries,
+        add: { isDescending: `${at(filters, "isDescending")}` },
+      });
+    } else if (queries.get("isDescending") !== null) {
+      searchParams = getUrl({ queries, remove: ["isDescending"] });
+    }
+
+    if (at(filters, "sortBy")) {
+      searchParams = getUrl({
+        queries,
+        add: { sortBy: at(filters, "sortBy") },
+      });
+    } else if (queries.get("sortBy") !== null) {
+      searchParams = getUrl({ queries, remove: ["sortBy"] });
+    }
+
+    if (at(filters, "type")) {
+      searchParams = getUrl({
+        queries,
+        add: { type: at(filters, "type") },
+      });
+    } else if (queries.get("type") !== null) {
+      searchParams = getUrl({ queries, remove: ["type"] });
+    }
+
+    if (searchParams !== "") {
+      navigate({
+        pathname: location.pathname,
+        search: `?${searchParams}`,
+      });
+    }
+  };
 
   const fetchNext = () => {
     if (at(players, "page") < at(players, "totalPages")) {
-      // setCurretPage(currentPage + 1);
       setFilters({ ...filters, page: currentPage + 1 });
     }
   };
 
   const fetchPrev = () => {
     if (at(players, "page") > 1) {
-      // setCurretPage(currentPage - 1);
       setFilters({ ...filters, page: currentPage - 1 });
     }
   };
 
   const onChangeToggle = (checked) => {
-    console.log(`switch to ${checked}`);
     if (checked) {
       setFilters({ ...filters, isDescending: true });
     } else {
       setFilters({ ...filters, isDescending: false });
     }
-    // todo: map to query
   };
 
   const handleSortByChange = (value) => {
-    console.log(`selected sort ${value}`);
     setFilters({ ...filters, sortBy: value });
-    // todo: map to query
   };
 
   const handleFilterByChange = (value) => {
-    console.log(`selected filter ${value}`);
     setFilters({ ...filters, type: value });
-    // todo: map to query
   };
 
   const clearAllFilters = () => {
     setFilters({ page: 1 });
-    // todo: remove added queries
   };
 
   return (

@@ -18,12 +18,14 @@ export const calculateAge = (dob) => {
 
 export const getUrl = ({ queries = {}, add, remove = [] }) => {
   const existingQueries = queries.toString();
+  console.log("existingQueries ", existingQueries);
   const copyQueries = {};
 
-  existingQueries.split("&").forEach((item) => {
-    const queryPair = item.split("=");
-    copyQueries[queryPair[0]] = queryPair[1];
-  });
+  existingQueries &&
+    existingQueries.split("&").forEach((item) => {
+      const queryPair = item.split("=");
+      copyQueries[queryPair[0]] = queryPair[1];
+    });
 
   Object.keys(add || {}).map((key) => {
     if (queries) {
