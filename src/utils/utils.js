@@ -1,3 +1,5 @@
+import { createSearchParams } from "react-router-dom";
+
 export const calculateAge = (dob) => {
   const birthDate = new Date(dob);
   const currentDate = new Date();
@@ -12,4 +14,26 @@ export const calculateAge = (dob) => {
   }
 
   return yearsDiff;
+};
+
+export const getUrl = ({ queries = {}, add, remove = [] }) => {
+  const existingQueries = queries.toString();
+  const copyQueries = {};
+
+  existingQueries.split("&").forEach((item) => {
+    const queryPair = item.split("=");
+    copyQueries[queryPair[0]] = queryPair[1];
+  });
+
+  Object.keys(add || {}).map((key) => {
+    if (queries) {
+      copyQueries[key] = add[key];
+    }
+  });
+
+  remove.map((key) => {
+    copyQueries && copyQueries[key] && delete copyQueries[key];
+  });
+
+  return createSearchParams(copyQueries);
 };

@@ -18,3 +18,12 @@
 .ant-select-selector {
   border-color: #8a9cff !important;
 }
+
+.search-wrapper {
+  padding-top: 20px;
+}
+
+.ant-input {
+  border-color: #8a9cff !important;
+  color: #8a9cff !important;
+}

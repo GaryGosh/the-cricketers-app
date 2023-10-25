@@ -1,4 +1,4 @@
-import { Select, Switch } from "antd";
+import { Input, Select, Switch } from "antd";
 import React from "react";
 import "./Filter.css";
 import { CloseCircleOutlined } from "@ant-design/icons";
@@ -35,6 +35,7 @@ const TYPE_OPTIONS = [
 ];
 
 function Filters({
+  onSearch,
   handleSortByChange,
   onChangeToggle,
   handleFilterByChange,
@@ -43,6 +44,9 @@ function Filters({
 }) {
   return (
     <div className="filter-container">
+      <div className="search-wrapper">
+        <Input placeholder="Search player name .." onChange={onSearch} />
+      </div>
       <div className="sort-by-wrapper">
         <div>Sort by</div>
         <Select
