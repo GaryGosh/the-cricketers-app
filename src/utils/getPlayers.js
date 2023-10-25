@@ -1,14 +1,12 @@
 import data from "../players";
+import { appendRank } from "./utils";
 
 export const getPlayers = (args) => {
   console.log("args to fetch ", args);
   return new Promise((resolve) => {
     let sortedData = data;
 
-    sortedData = sortedData.map((it, index) => ({
-      ...it,
-      rank: index + 1,
-    }));
+    sortedData = appendRank(sortedData);
 
     // Sort the data based on the sort payload
     if (args?.sortBy === "name") {
