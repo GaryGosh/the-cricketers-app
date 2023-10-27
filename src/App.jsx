@@ -10,6 +10,7 @@ import Filters from "./components/filters/Filters";
 import { getUrl } from "./utils/utils";
 import { useLocation, useNavigate } from "react-router-dom";
 import { debounce } from "lodash";
+import EmptyState from "./assets/emptyState.svg";
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -183,13 +184,23 @@ function App() {
         <PlayerList player={player} key={player.id} />
       ))}
 
-      {/* prev - next button */}
-      <NavButton
-        totalPages={at(players, "totalPages")}
-        currentPage={at(players, "page")}
-        onclickBack={fetchPrev}
-        onClickNext={fetchNext}
-      />
+      {at(players, "data").length ? (
+        <NavButton
+          totalPages={at(players, "totalPages")}
+          currentPage={at(players, "page")}
+          onclickBack={fetchPrev}
+          onClickNext={fetchNext}
+        />
+      ) : (
+        <div>
+          <img
+            src={EmptyState}
+            alt="icon"
+            style={{ height: "150px", width: "150px", marginTop: "30px" }}
+          />
+          <p>No data found..</p>
+        </div>
+      )}
     </>
   );
 }
