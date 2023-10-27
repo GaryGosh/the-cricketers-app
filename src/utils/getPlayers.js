@@ -8,6 +8,13 @@ export const getPlayers = (args) => {
 
     sortedData = appendRank(sortedData);
 
+    if (args?.searchKeyword) {
+      const nameFilter = args.searchKeyword.toLowerCase();
+      sortedData = sortedData.filter((player) =>
+        player.name.toLowerCase().includes(nameFilter)
+      );
+    }
+
     // Sort the data based on the sort payload
     if (args?.sortBy === "name") {
       sortedData = sortedData.sort((a, b) =>

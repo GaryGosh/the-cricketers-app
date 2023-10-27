@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./App.css";
 import { getPlayers } from "./utils/getPlayers";
 import at from "v-at";
@@ -9,6 +9,7 @@ import Header from "./components/header/Header";
 import Filters from "./components/filters/Filters";
 import { getUrl } from "./utils/utils";
 import { useLocation, useNavigate } from "react-router-dom";
+import { debounce } from "lodash";
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -25,7 +26,11 @@ function App() {
     isDescending: queries.get("isDescending") || false,
     sortBy: queries.get("sortBy") || null,
     type: queries.get("type") || null,
+    searchKeyword: queries.get("search") || "",
   });
+  const [searchKeyword, setSearchKeyword] = useState(
+    queries.get("search") || ""
+  );
 
   useEffect(() => {
     getPlayers(filters)
@@ -40,6 +45,15 @@ function App() {
     updateQueries();
   }, [filters]);
 
+  useEffect(() => {
+    if (searchKeyword && searchKeyword.length > 3) {
+      setFilters({ ...filters, searchKeyword: searchKeyword });
+    } else {
+      setFilters({ ...filters, searchKeyword: "" });
+    }
+    updateQueries();
+  }, [searchKeyword]);
+
   // mapping filter changes to queries
   const updateQueries = () => {
     let searchParams = "";
@@ -49,6 +63,15 @@ function App() {
         queries,
         add: { page: `${at(filters, "page")}` },
       });
+    }
+
+    if (at(filters, "searchKeyword")) {
+      searchParams = getUrl({
+        queries,
+        add: { search: at(filters, "searchKeyword") },
+      });
+    } else if (queries.get("search")) {
+      searchParams = getUrl({ queries, remove: ["search"] });
     }
 
     if (at(filters, "isDescending")) {
@@ -98,6 +121,16 @@ function App() {
     }
   };
 
+  // setting search keyword in 500ms delay
+  const debouncedSetInputValue = debounce((value) => {
+    setSearchKeyword(value);
+  }, 500);
+
+  const onSearch = (e) => {
+    const newValue = e.target.value;
+    debouncedSetInputValue(newValue);
+  };
+
   const onChangeToggle = (checked) => {
     if (checked) {
       setFilters({ ...filters, isDescending: true });
@@ -123,6 +156,7 @@ function App() {
       <Header />
 
       <Filters
+        onSearch={onSearch}
         handleSortByChange={handleSortByChange}
         onChangeToggle={onChangeToggle}
         handleFilterByChange={handleFilterByChange}
