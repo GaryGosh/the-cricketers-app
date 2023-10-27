@@ -24,7 +24,6 @@ function PlayerDetailScreen() {
     if (playerId) {
       getPlayerById(playerId)
         .then((result) => {
-          console.log(result);
           setPlayerData(result);
         })
         .catch((error) => {

@@ -18,7 +18,6 @@ export const calculateAge = (dob) => {
 
 export const getUrl = ({ queries = {}, add, remove = [] }) => {
   const existingQueries = queries.toString();
-  console.log("existingQueries ", existingQueries);
   const copyQueries = {};
 
   existingQueries &&
