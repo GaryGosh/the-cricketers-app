@@ -44,6 +44,13 @@ function App() {
   const updateQueries = () => {
     let searchParams = "";
 
+    if (at(filters, "page")) {
+      searchParams = getUrl({
+        queries,
+        add: { page: `${at(filters, "page")}` },
+      });
+    }
+
     if (at(filters, "isDescending")) {
       searchParams = getUrl({
         queries,
