@@ -184,7 +184,7 @@ function App() {
         <PlayerList player={player} key={player.id} />
       ))}
 
-      {at(players, "data").length ? (
+      {at(players, "data")?.length ? (
         <NavButton
           totalPages={at(players, "totalPages")}
           currentPage={at(players, "page")}

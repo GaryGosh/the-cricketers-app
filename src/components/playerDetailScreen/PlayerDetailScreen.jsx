@@ -30,6 +30,8 @@ function PlayerDetailScreen() {
         .catch((error) => {
           console.log(error);
         });
+
+      window.scrollTo(0, 0);
     }
   }, [playerId]);
 
@@ -48,6 +50,21 @@ function PlayerDetailScreen() {
       <div className="player-detail">
         {playerData ? (
           <>
+            <div className="player-image-mob">
+              {playerData.picUrl ? (
+                <img
+                  className="player-img"
+                  src={playerData.picUrl}
+                  alt={playerData.name}
+                />
+              ) : (
+                <img
+                  src={PlayerIcon}
+                  alt="icon"
+                  style={{ height: "500px", width: "500px" }}
+                />
+              )}
+            </div>
             <div className="player-info">
               <h2 className="name">{playerData.name}</h2>
               <p className="player-description">{playerData.description}</p>
@@ -69,6 +86,12 @@ function PlayerDetailScreen() {
                   <p>Age</p>
                   <div className="player-chip">
                     {calculateAge(playerData.dob)}
+                  </div>
+                </div>
+                <div className="info-container">
+                  <p>DOB</p>
+                  <div className="player-chip">
+                    {new Date(playerData.dob).toLocaleDateString()}
                   </div>
                 </div>
               </div>
